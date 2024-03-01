@@ -1,7 +1,7 @@
 require('dotenv').config()
 const axios = require("axios");
 
-const {CONNECTION_STRING} = process.env
+const {CONNECTION_STRING, API_KEY} = process.env
 const Sequelize = require('sequelize')
 
 
@@ -15,7 +15,7 @@ module.exports = {
             url: 'https://best-daily-astrology-and-horoscope-api.p.rapidapi.com/api/Detailed-Horoscope/',
             params: { zodiacSign: 'taurus' },
             headers: {
-                'X-RapidAPI-Key': 'e2e341784bmsh1110e9a375dc420p18ac13jsnfddfc480abe4',
+                'X-RapidAPI-Key': API_KEY,
                 'X-RapidAPI-Host': 'best-daily-astrology-and-horoscope-api.p.rapidapi.com'
             }
         };
