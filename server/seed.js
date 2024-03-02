@@ -8,15 +8,14 @@ module.exports = {
     seed: (req, res) => {
         sequelize.query(
             `
-            drop table if exists users;
             drop table if exists ratings;
+            drop table if exists users;
 
             create table users (
                 user_id SERIAL PRIMARY KEY,
                 first_name VARCHAR(100), 
                 last_name VARCHAR(100), 
                 email VARCHAR(50) UNIQUE, 
-                password VARCHAR(50),
                 sign VARCHAR(50)            );
 
             create table ratings (
