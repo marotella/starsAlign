@@ -3,17 +3,18 @@
 let signUpForm = document.getElementById("sign-up");
 let getHoroscopeBtn =document.getElementById("getHoroscope");
 let loginForm = document.getElementById("login")
-let currentUser = null;
 
 
-async function fetchHoroscopeData(currentUser) {
+async function fetchHoroscopeData() {
     try {
+        const userSign = currentUser.sign; 
+        console.log(`This is the ${userSign}`);
         const response = await fetch(`http://localhost:4000/api/horoscope`, {
-            method: 'POST',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ currentUser })
+
         });
         console.log(response)
         const data = await response.json();
@@ -67,12 +68,17 @@ async function loginUser(event) {
         const response = await axios.post(`http://localhost:4000/api/login`, loginData)
         console.log(response)
         currentUser = response.data
-        fetchHoroscopeData()
+        console.log(currentUser)
+        if (currentUser) {
+            await fetchHoroscopeData(currentUser)
+        } else {
+            console.error("Current user is undefined")
+        }
     } catch (error){
         console.log(error)
     }
 
 }
-getHoroscopeBtn.addEventListener("click", fetchHoroscopeData)
+getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
 signUpForm.addEventListener("submit", createUser)
 loginForm.addEventListener("submit", loginUser)
