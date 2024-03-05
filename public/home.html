@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stars Align</title>
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <h1>Stars Align</h1>
+    <div id="header">
+        <button id="signUpDisplay">Sign up</button>
+        <button id="logInDisplay">Log In</button>
+        <button id="updateDisplay">Update Profile</button>
+        <button id="logOut">Log Out</button>
+    </div>
     <h2>Sign up</h2>
     <form id="sign-up">
         <label>First Name: </label><input type="text"
@@ -51,7 +58,7 @@
         placeholder="Email">
           <button type="submit">Log In</button>
     </form>
-    <div>
+    <div id = "horoscopeInfo">
         <button id = "getHoroscope">Get Horoscope</button>
         <h1 id="sign"></h1>
         <ul>
@@ -61,6 +68,22 @@
         <p>Mantra:</p> </p><p id="mantra"></p>
         <p id="remedy"></p>
     </ul>
+    </div>
+    <div id="ratingInfo">
+        <h3>Rate the accuracy of your horoscope</h3>
+        <div class="rating">
+            <input type="radio" id="star5" name="rating" value="5">
+            <label for="star5">5</label>
+            <input type="radio" id="star4" name="rating" value="4">
+            <label for="star4">4</label>
+            <input type="radio" id="star3" name="rating" value="3">
+            <label for="star3">3</label>
+            <input type="radio" id="star2" name="rating" value="2">
+            <label for="star2">2</label>
+            <input type="radio" id="star1" name="rating" value="1">
+            <label for="star1">1</label>
+            <button id="ratingBtn">Submit Rating</button>
+        </div>
     </div>
     <script src="client.js"></script>
     <script src="../node_modules/axios/dist/axios.min.js"></script>

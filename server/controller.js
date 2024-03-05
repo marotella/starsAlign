@@ -1,8 +1,8 @@
 require('dotenv').config();
 const axios = require("axios");
-const { CONNECTION_STRING, API_KEY } = process.env;
+const { CONNECTION_STRING, API_KEY, SECRET_KEY } = process.env;
 const Sequelize = require('sequelize');
-let currentUser = null;
+let currentUser = null
 
 const sequelize = new Sequelize(CONNECTION_STRING, {
     dialect: 'postgres',
@@ -14,12 +14,17 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 module.exports = {
     getHoroscope: async (req, res, currentUser) => {
         try {
-            const userSign = currentUser.sign; 
+            const currentUser = req.session.currentUser;
+            console.log(currentUser)
+            if (!currentUser) {
+                return res.status(401).json({ error: 'User not logged in' });
+            }
+            const userSign = currentUser.sign;
             console.log(`This is the ${userSign}`);
             const options = {
                 method: 'GET',
                 url: 'https://best-daily-astrology-and-horoscope-api.p.rapidapi.com/api/Detailed-Horoscope/',
-                params: { zodiacSign: userSign },
+                params: { zodiacSign: `${userSign}` },
                 headers: {
                     'X-RapidAPI-Key': API_KEY,
                     'X-RapidAPI-Host': 'best-daily-astrology-and-horoscope-api.p.rapidapi.com'
@@ -50,7 +55,10 @@ module.exports = {
                     return res.status(404).json({ error: 'User not found' });
                 }
                 currentUser = dbRes[0][0];
+                req.session.currentUser = currentUser
                 console.log(currentUser);
+                console.log('Session data after login:', req.session);
+
                 res.status(200).json(currentUser); // Send user data as response
             })
             .catch(error => console.log(error));
