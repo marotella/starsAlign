@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stars Align</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <h1>Stars Align</h1>
     <div id="header">
@@ -13,79 +15,75 @@
         <button id="logInDisplay">Log In</button>
         <button id="updateDisplay">Update Profile</button>
         <button id="logOut">Log Out</button>
-    </div>
-    <h2>Sign up</h2>
-    <form id="sign-up">
-        <label>First Name: </label><input type="text"
-        name="firstName"
-        id="first-name"
-        placeholder="First Name">
-        <label> Last Name: </label><input type="text"
-        name="lastName"
-        id="last-name"
-        placeholder="Last Name">
-        <label>Email: </label><input type="email"
-        name="email"
-        id="email"
-        placeholder="Email">
-        <label>Star sign: </label><select name="sign" id="sign">
-            <option>--Please choose an option--</option>
-            <option value="aries">Aries</option>
-            <option value="taurus">Taurus</option>
-            <option value="cancer">Cancer</option>
-            <option value="aquarius">Aquarius</option>
-            <option value="pisces">Pisces</option>
-            <option value="gemini">Gemini</option>
-            <option value="leo">Leo</option>
-            <option value="virgo">Virgo</option>
-            <option value="libra">Libra</option>
-            <option value="scorpio">Scorpio</option>
-            <option value="sagittrius">Sagittrius</option>
-            <option value="capricorn">Capricorn</option>
-          </select>
-          <button type="submit">Sign up</button>
-    </form>
+        <div id="sign-up" >
+            <h2>Sign up</h2>
+            <form id="sign-up-form">
+                <label>First Name: </label><input type="text" name="firstName" id="first-name" placeholder="First Name">
+                <label> Last Name: </label><input type="text" name="lastName" id="last-name" placeholder="Last Name">
+                <label>Email: </label><input type="email" name="email" id="email" placeholder="Email">
+                <label>Star sign: </label><select name="sign" id="sign">
+                    <option>--Please choose an option--</option>
+                    <option value="aries">Aries</option>
+                    <option value="taurus">Taurus</option>
+                    <option value="cancer">Cancer</option>
+                    <option value="aquarius">Aquarius</option>
+                    <option value="pisces">Pisces</option>
+                    <option value="gemini">Gemini</option>
+                    <option value="leo">Leo</option>
+                    <option value="virgo">Virgo</option>
+                    <option value="libra">Libra</option>
+                    <option value="scorpio">Scorpio</option>
+                    <option value="sagittrius">Sagittrius</option>
+                    <option value="capricorn">Capricorn</option>
+                </select>
+                <button type="submit">Sign up</button>
+            </form>
+
+            <div id="loginSection" >
+
+                <h2>Log In</h2>
+                <form id="login-form">
 
 
-    <h2>Log In</h2>
-    <form id="login">
-       
-   
-        <label>Email: </label>
-        <input type="email"
-        name="email"
-        id="login-email"
-        placeholder="Email">
-          <button type="submit">Log In</button>
-    </form>
-    <div id = "horoscopeInfo">
-        <button id = "getHoroscope">Get Horoscope</button>
-        <h1 id="sign"></h1>
-        <ul>
-        <li>Horoscope: <p id="horoscope"></p></li>
-        <p id="number"></p>
-        <p id="color"></p>
-        <p>Mantra:</p> </p><p id="mantra"></p>
-        <p id="remedy"></p>
-    </ul>
-    </div>
-    <div id="ratingInfo">
-        <h3>Rate the accuracy of your horoscope</h3>
-        <div class="rating">
-            <input type="radio" id="star5" name="rating" value="5">
-            <label for="star5">5</label>
-            <input type="radio" id="star4" name="rating" value="4">
-            <label for="star4">4</label>
-            <input type="radio" id="star3" name="rating" value="3">
-            <label for="star3">3</label>
-            <input type="radio" id="star2" name="rating" value="2">
-            <label for="star2">2</label>
-            <input type="radio" id="star1" name="rating" value="1">
-            <label for="star1">1</label>
-            <button id="ratingBtn">Submit Rating</button>
-        </div>
-    </div>
-    <script src="client.js"></script>
-    <script src="../node_modules/axios/dist/axios.min.js"></script>
+                    <label>Email: </label>
+                    <input type="email" name="email" id="login-email" placeholder="Email">
+                    <button type="submit">Log In</button>
+                </form>
+            </div>
+
+            <div id="horoscopeInfo">
+                <button id="getHoroscope">Get Horoscope</button>
+                <h1 id="sign"></h1>
+                <ul>
+                    <li>Horoscope: <p id="horoscope"></p>
+                    </li>
+                    <p id="number"></p>
+                    <p id="color"></p>
+                    <p>Mantra:</p>
+                    </p>
+                    <p id="mantra"></p>
+                    <p id="remedy"></p>
+                </ul>
+            </div>
+            <div id="ratingInfo">
+                <h3>Rate the accuracy of your horoscope</h3>
+                <div class="rating">
+                    <input type="radio" id="star5" name="rating" value="5">
+                    <label for="star5">5</label>
+                    <input type="radio" id="star4" name="rating" value="4">
+                    <label for="star4">4</label>
+                    <input type="radio" id="star3" name="rating" value="3">
+                    <label for="star3">3</label>
+                    <input type="radio" id="star2" name="rating" value="2">
+                    <label for="star2">2</label>
+                    <input type="radio" id="star1" name="rating" value="1">
+                    <label for="star1">1</label>
+                    <button id="ratingBtn">Submit Rating</button>
+                </div>
+            </div>
+
+            <script src="client.js"></script>
+            <script src="../node_modules/axios/dist/axios.min.js"></script>
 </body>
+
 </html>

@@ -2,28 +2,16 @@
 
 let signUpForm = document.getElementById("sign-up");
 let getHoroscopeBtn =document.getElementById("getHoroscope");
-let loginForm = document.getElementById("login")
+let loginForm = document.getElementById("login-form")
 const signUpDisplayBtn = document.getElementById("signUpDisplay");
 const logInDisplayBtn = document.getElementById("logInDisplay");
 const updateDisplayBtn = document.getElementById("updateDisplay");
 const logOutBtn = document.getElementById("logOut");
 
 const signUpSection = document.getElementById("sign-up");
-const loginSection = document.getElementById("login");
+const loginSection = document.getElementById("loginSection");
 const horoscopeInfoSection = document.getElementById("horoscopeInfo");
 const ratingInfoSection = document.getElementById("ratingInfo");
-
-// Function to toggle section visibility
-function toggleSection(section) {
-    // Hide all sections
-    signUpSection.style.display = "hide";
-    loginSection.style.display = "hide";
-    horoscopeInfoSection.style.display = "hide";
-    ratingInfoSection.style.display = "hide";
-
-    // Show the selected section
-    section.style.display = "block";
-}
 
 
 
@@ -110,16 +98,4 @@ async function loginUser(event) {
 getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
 signUpForm.addEventListener("submit", createUser)
 loginForm.addEventListener("submit", loginUser)
-
-signUpDisplayBtn.addEventListener("click", function() {
-    toggleSection(signUpSection);
-});
-
-logInDisplayBtn.addEventListener("click", function() {
-    toggleSection(loginSection);
-});
-
-updateDisplayBtn.addEventListener("click", function() {
-    // Add logic to show update profile section
-});
 
