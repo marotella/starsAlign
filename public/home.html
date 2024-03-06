@@ -15,7 +15,8 @@
         <button id="logInDisplay">Log In</button>
         <button id="updateDisplay">Update Profile</button>
         <button id="logOut">Log Out</button>
-        <div id="sign-up" >
+    </div>
+        <div id="sign-up">
             <h2>Sign up</h2>
             <form id="sign-up-form">
                 <label>First Name: </label><input type="text" name="firstName" id="first-name" placeholder="First Name">
@@ -38,8 +39,8 @@
                 </select>
                 <button type="submit">Sign up</button>
             </form>
-
-            <div id="loginSection" >
+        </div>
+            <div id="loginSection">
 
                 <h2>Log In</h2>
                 <form id="login-form">
@@ -47,41 +48,49 @@
 
                     <label>Email: </label>
                     <input type="email" name="email" id="login-email" placeholder="Email">
-                    <button type="submit">Log In</button>
+                    <button type="login-submit">Log In</button>
+
                 </form>
             </div>
+            <div id="profileSection" >
 
-            <div id="horoscopeInfo">
-                <button id="getHoroscope">Get Horoscope</button>
-                <h1 id="sign"></h1>
-                <ul>
-                    <li>Horoscope: <p id="horoscope"></p>
-                    </li>
-                    <p id="number"></p>
-                    <p id="color"></p>
-                    <p>Mantra:</p>
-                    </p>
-                    <p id="mantra"></p>
-                    <p id="remedy"></p>
-                </ul>
-            </div>
-            <div id="ratingInfo">
-                <h3>Rate the accuracy of your horoscope</h3>
-                <div class="rating">
-                    <input type="radio" id="star5" name="rating" value="5">
-                    <label for="star5">5</label>
-                    <input type="radio" id="star4" name="rating" value="4">
-                    <label for="star4">4</label>
-                    <input type="radio" id="star3" name="rating" value="3">
-                    <label for="star3">3</label>
-                    <input type="radio" id="star2" name="rating" value="2">
-                    <label for="star2">2</label>
-                    <input type="radio" id="star1" name="rating" value="1">
-                    <label for="star1">1</label>
-                    <button id="ratingBtn">Submit Rating</button>
+                <h2>Profile</h2>
+                <h4 id="currentUserName"></h4>
+                <h4 id="currentUserSign"></h4>
+                <button id="updateDisplay">Update Profile</button>
+        
                 </div>
-            </div>
-
+        
+                    <div id="horoscopeInfo">
+                        <button id="getHoroscope">Get Horoscope</button>
+                        <h1 id="sign"></h1>
+                        <ul>
+                            <li>Horoscope: <p id="horoscope"></p>
+                            </li>
+                            <p id="number"></p>
+                            <p id="color"></p>
+                            <p>Mantra:</p>
+                            </p>
+                            <p id="mantra"></p>
+                            <p id="remedy"></p>
+                        </ul>
+                    </div>
+                    <div id="ratingInfo">
+                        <h3>Rate the accuracy of your horoscope</h3>
+                        <div class="rating">
+                            <input type="radio" id="star5" name="rating" value="5">
+                            <label for="star5">5</label>
+                            <input type="radio" id="star4" name="rating" value="4">
+                            <label for="star4">4</label>
+                            <input type="radio" id="star3" name="rating" value="3">
+                            <label for="star3">3</label>
+                            <input type="radio" id="star2" name="rating" value="2">
+                            <label for="star2">2</label>
+                            <input type="radio" id="star1" name="rating" value="1">
+                            <label for="star1">1</label>
+                            <button id="ratingBtn">Submit Rating</button>
+                        </div>
+                    </div>
             <script src="client.js"></script>
             <script src="../node_modules/axios/dist/axios.min.js"></script>
 </body>
