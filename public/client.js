@@ -3,15 +3,20 @@
 let signUpForm = document.getElementById("sign-up");
 let getHoroscopeBtn =document.getElementById("getHoroscope");
 let loginForm = document.getElementById("login-form")
+
+
 const signUpDisplayBtn = document.getElementById("signUpDisplay");
 const logInDisplayBtn = document.getElementById("logInDisplay");
 const updateDisplayBtn = document.getElementById("updateDisplay");
 const logOutBtn = document.getElementById("logOut");
 
+
+
 const signUpSection = document.getElementById("sign-up");
 const loginSection = document.getElementById("loginSection");
 const horoscopeInfoSection = document.getElementById("horoscopeInfo");
 const ratingInfoSection = document.getElementById("ratingInfo");
+const profileSection = document.getElementById("profileSection");
 
 
 
@@ -52,7 +57,7 @@ async function loginUser(event) {
         console.log(currentUser)
         if (currentUser) {
             // window.location.href = 'profile.html';
-            await fetchHoroscopeData(currentUser)
+            await setProfileAndHoroscopeData(currentUser); // Fetch both profile and horoscope data after login
 
         } else {
             console.error("Current user is undefined")
@@ -92,8 +97,32 @@ async function fetchHoroscopeData(currentUser) {
     }
 }
 
+async function setProfileData (currentUser) {
+    document.getElementById('currentUserName').innerText = `Hi, ${currentUser.first_name}! Let's see what the stars have in store for you!`; 
+    document.getElementById('currentUserSign').innerText = `Your astrological sign is, ${currentUser.sign}!`}
+
+async function setProfileAndHoroscopeData(currentUser) {
+    await setProfileData(currentUser); // Populate profile section
+    await fetchHoroscopeData(currentUser); // Populate horoscope info
+}
+
+async function rateHoroscope(rating) {
+    try {
+        const response = await axios.post(
+            `http://localhost:4000/api/rating`,
+            { rating: rating },
+            { withCredentials: true }
+        );
+        console.log(response.data); 
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
 signUpForm.addEventListener("submit", createUser)
 loginForm.addEventListener("submit", loginUser)
-
+document.getElementById("ratingBtn").addEventListener("click", async () => {
+    const rating = document.querySelector('input[name="rating"]:checked').value;
+    await rateHoroscope(rating);
+});
