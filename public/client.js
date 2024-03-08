@@ -56,9 +56,8 @@ async function loginUser(event) {
         currentUser = response.data
         console.log(currentUser)
         if (currentUser) {
-            // window.location.href = 'profile.html';
             await setProfileAndHoroscopeData(currentUser); // Fetch both profile and horoscope data after login
-
+            await getHoroscopeRating(currentUser);
         } else {
             console.error("Current user is undefined")
         }
@@ -130,18 +129,18 @@ async function getHoroscopeRating(currentUser) {
             withCredentials: true
         });
         console.log(response.data);
-
+        const ratingAverage= response.data;
+        averageRating.innerText = `${ratingAverage}`;
     } catch (error){
-        console.error(error)
+        console.error(error);
     }
 };
 
 getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
-signUpForm.addEventListener("submit", createUser)
-loginForm.addEventListener("submit", loginUser)
+signUpForm.addEventListener("submit", createUser);
+loginForm.addEventListener("submit", loginUser);
 document.getElementById("ratingBtn").addEventListener("click", async () => {
     const rating = document.querySelector('input[name="rating"]:checked').value;
     await rateHoroscope(rating);
 });
 
-averageRating.addEventListener()

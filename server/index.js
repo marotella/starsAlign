@@ -44,6 +44,6 @@ app.post("/api/login", loginUser)
 
 //RATING
 app.post("/api/rating", createRating)
-app.post("/api/rating", createRating)
+app.get("/api/rating", createRating)
 
 app.listen(4000, () => console.log("Server connected on port: "+ SERVER_PORT))
