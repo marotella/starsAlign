@@ -1,7 +1,7 @@
 
 
 let signUpForm = document.getElementById("sign-up");
-let getHoroscopeBtn =document.getElementById("getHoroscope");
+let getHoroscopeBtn = document.getElementById("getHoroscope");
 let loginForm = document.getElementById("login-form")
 
 
@@ -13,15 +13,15 @@ const logOutBtn = document.getElementById("logOut");
 
 
 const signUpSection = document.getElementById("sign-up");
-const loginSection = document.getElementById("loginSection");
-const horoscopeInfoSection = document.getElementById("horoscopeInfo");
-const ratingInfoSection = document.getElementById("ratingInfo");
-const profileSection = document.getElementById("profileSection");
+const loginSection = document.getElementById("login-section");
+const horoscopeInfoSection = document.getElementById("horoscope-info");
+const ratingInfoSection = document.getElementById("rating-info");
+const profileSection = document.getElementById("profile-section");
+const averageRating = document.getElementById("average-rating");
 
 
 
-
-async function createUser (event) {
+async function createUser(event) {
     event.preventDefault();
     const first_name = document.getElementById("first-name").value;
     const last_name = document.getElementById("last-name").value;
@@ -34,12 +34,12 @@ async function createUser (event) {
         email: email,
         sign: sign
     }
-    try{
-        const response = await axios.post(`http://localhost:4000/api/users`, userData) 
+    try {
+        const response = await axios.post(`http://localhost:4000/api/users`, userData)
     } catch (error) {
         console.error(error);
     }
-}
+};
 
 async function loginUser(event) {
     event.preventDefault();
@@ -51,7 +51,7 @@ async function loginUser(event) {
     console.log(loginData)
 
     try {
-        const response = await axios.post(`http://localhost:4000/api/login`, loginData, {withCredentials: true})
+        const response = await axios.post(`http://localhost:4000/api/login`, loginData, { withCredentials: true })
         console.log(response)
         currentUser = response.data
         console.log(currentUser)
@@ -62,15 +62,15 @@ async function loginUser(event) {
         } else {
             console.error("Current user is undefined")
         }
-    } catch (error){
+    } catch (error) {
         console.log(error)
     }
 
-}
+};
 
 async function fetchHoroscopeData(currentUser) {
     try {
-        const userSign = currentUser.sign; 
+        const userSign = currentUser.sign;
         console.log(`This is the ${userSign}`);
         const response = await axios.get(`http://localhost:4000/api/horoscope`, {
             headers: {
@@ -95,16 +95,17 @@ async function fetchHoroscopeData(currentUser) {
     } catch (error) {
         console.error(error);
     }
-}
+};
 
-async function setProfileData (currentUser) {
-    document.getElementById('currentUserName').innerText = `Hi, ${currentUser.first_name}! Let's see what the stars have in store for you!`; 
-    document.getElementById('currentUserSign').innerText = `Your astrological sign is, ${currentUser.sign}!`}
+async function setProfileData(currentUser) {
+    document.getElementById('currentUserName').innerText = `Hi, ${currentUser.first_name}! Let's see what the stars have in store for you!`;
+    document.getElementById('currentUserSign').innerText = `Your astrological sign is, ${currentUser.sign}!`
+};
 
 async function setProfileAndHoroscopeData(currentUser) {
     await setProfileData(currentUser); // Populate profile section
     await fetchHoroscopeData(currentUser); // Populate horoscope info
-}
+};
 
 async function rateHoroscope(rating) {
     try {
@@ -113,11 +114,27 @@ async function rateHoroscope(rating) {
             { rating: rating },
             { withCredentials: true }
         );
-        console.log(response.data); 
+        console.log(response.data);
     } catch (error) {
         console.error(error);
     }
-}
+};
+
+async function getHoroscopeRating(currentUser) {
+    try {
+        const response = await axios.get(
+            `http://localhost:4000/api/rating`, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            withCredentials: true
+        });
+        console.log(response.data);
+
+    } catch (error){
+        console.error(error)
+    }
+};
 
 getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
 signUpForm.addEventListener("submit", createUser)
@@ -126,3 +143,5 @@ document.getElementById("ratingBtn").addEventListener("click", async () => {
     const rating = document.querySelector('input[name="rating"]:checked').value;
     await rateHoroscope(rating);
 });
+
+averageRating.addEventListener()

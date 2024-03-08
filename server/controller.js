@@ -78,6 +78,20 @@ module.exports = {
             console.error(error)
             res.status(500).json({error: "Internal error"})
         }
+    },
+    getAverageRating: async (req, res) => {
+        const {currentUser} = req.session;
+        if(!currentUser){
+            return res.status(401).json({error:"User is not logged in"});
+        } try {
+            const query = `SELECT AVG(rating) AS average_rating FROM ratings WHERE ratings.rating.customer_id = ${currentUser.id} `
+            await sequelize.query(query);
+            res.status(200).send("Rating successful")
+        } catch (error) {
+            console.error(error)
+            res.status(500).json({error: "Internal error"})
+        }
+        
     }
 };
 
