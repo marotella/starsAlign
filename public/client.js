@@ -9,7 +9,7 @@ const signUpDisplayBtn = document.getElementById("signUpDisplay");
 const logInDisplayBtn = document.getElementById("logInDisplay");
 const updateDisplayBtn = document.getElementById("updateDisplay");
 const logOutBtn = document.getElementById("logOut");
-
+const ratingBtn = document.getElementById("rating-button")
 
 
 const signUpSection = document.getElementById("sign-up");
@@ -107,6 +107,7 @@ async function setProfileAndHoroscopeData(currentUser) {
 };
 
 async function rateHoroscope(rating) {
+
     try {
         const response = await axios.post(
             `http://localhost:4000/api/rating`,
@@ -128,9 +129,8 @@ async function getHoroscopeRating(currentUser) {
             },
             withCredentials: true
         });
-        console.log(response.data);
-        const ratingAverage= response.data;
-        averageRating.innerText = `${ratingAverage}`;
+        console.log(response);
+        averageRating.innerText = `Your Stars Align horoscope accuracy rating is: ${response.data.roundedAverageRating}`;
     } catch (error){
         console.error(error);
     }
@@ -139,8 +139,14 @@ async function getHoroscopeRating(currentUser) {
 getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
 signUpForm.addEventListener("submit", createUser);
 loginForm.addEventListener("submit", loginUser);
-document.getElementById("ratingBtn").addEventListener("click", async () => {
-    const rating = document.querySelector('input[name="rating"]:checked').value;
-    await rateHoroscope(rating);
-});
-
+ratingBtn.addEventListener("click", async (event) => {
+        const rating = document.querySelector('input[name="rating"]:checked').value;
+        console.log(rating);
+        if (rating) {
+            console.log(rating); // Check if the value is correctly retrieved
+            await rateHoroscope(rating);
+        } else {
+            console.error("Rating not captured");
+        }
+    }
+);

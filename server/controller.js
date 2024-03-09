@@ -66,12 +66,15 @@ module.exports = {
     createRating: async (req, res) => {
         const {rating} = req.body;
         const {currentUser} = req.session;
+        console.log(currentUser)
+        console.log(rating)
         if (!currentUser){
             return res.status(401).json({error: "User not logged in"});
 
         } try {
             const query = `INSERT INTO ratings (rating, user_id)
             VALUES (${rating}, ${currentUser.user_id})`;
+            console.log(query)
             await sequelize.query(query);
             res.status(200).send("Rating successful")
         } catch (error) {
@@ -81,12 +84,21 @@ module.exports = {
     },
     getAverageRating: async (req, res) => {
         const {currentUser} = req.session;
+        console.log(currentUser)
+        console.log(currentUser.user_id)
         if(!currentUser){
             return res.status(401).json({error:"User is not logged in"});
         } try {
-            const query = `SELECT AVG(rating) AS average_rating FROM ratings WHERE ratings.rating.customer_id = ${currentUser.id} `
-            await sequelize.query(query);
-            res.status(200).send("Rating successful")
+            const query = `SELECT AVG(rating) AS average_rating FROM ratings WHERE ratings.user_id = ${currentUser.user_id} `
+            const response = await sequelize.query(query);
+            const averageRating = response[0][0].average_rating;
+            console.log(averageRating)
+            const roundedAverageRating = parseFloat(averageRating).toFixed(1); // Round to one decimal place
+            console.log(roundedAverageRating)
+            res.status(200).json({ 
+                message: "Retrieving average rating successful", 
+                roundedAverageRating: roundedAverageRating 
+            });        
         } catch (error) {
             console.error(error)
             res.status(500).json({error: "Internal error"})
