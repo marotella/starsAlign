@@ -22,7 +22,7 @@ section {
     padding: 15px;
     border: 1px solid white;
     border-radius: 5px;
-    margin: 5px;
+    margin: 15px;
 }
 
 
@@ -66,4 +66,29 @@ input {
 
 input::placeholder {
     color: rgb(187, 0, 255);
+}
+
+#data-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+
+}
+
+#header {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: black;
+}
+
+#header a {
+    font-family: "Lato", sans-serif;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    margin: 10px;
 }

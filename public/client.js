@@ -11,6 +11,8 @@ const updateDisplayBtn = document.getElementById("updateDisplay");
 const logOutBtn = document.getElementById("logOut");
 const ratingBtn = document.getElementById("rating-button")
 
+const userSection = document.getElementById("user-section");
+const dataSection = document.getElementById("data-section");
 
 const signUpSection = document.getElementById("sign-up");
 const loginSection = document.getElementById("login-section");
@@ -19,7 +21,15 @@ const ratingInfoSection = document.getElementById("rating-info");
 const profileSection = document.getElementById("profile-section");
 const averageRating = document.getElementById("average-rating");
 
-
+function toggleSections(){
+    if (dataSection.style.display === "none") {
+        userSection.style.display = "none";
+        dataSection.style.display = "block";
+    } else {
+        userSection.style.display = "block";
+        dataSection.style.display = "none";
+    }
+}
 
 async function createUser(event) {
     event.preventDefault();
@@ -58,6 +68,8 @@ async function loginUser(event) {
         if (currentUser) {
             await setProfileAndHoroscopeData(currentUser); // Fetch both profile and horoscope data after login
             await getHoroscopeRating(currentUser);
+            toggleSections(); // Call toggleSections after login
+
         } else {
             console.error("Current user is undefined")
         }
@@ -72,6 +84,8 @@ async function logoutUser() {
         const response = await axios.delete('http://localhost:4000/api/logout', {
             withCredentials: true})
             console.log(response)
+            toggleSections(); // Call toggleSections after login
+
     }catch (error){
         console.error(error);
     }
@@ -146,7 +160,9 @@ async function getHoroscopeRating(currentUser) {
     }
 };
 
-getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
+
+
+// getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
 signUpForm.addEventListener("submit", createUser);
 loginForm.addEventListener("submit", loginUser);
 ratingBtn.addEventListener("click", async (event) => {
@@ -161,3 +177,5 @@ ratingBtn.addEventListener("click", async (event) => {
     }
 );
 logOutBtn.addEventListener("click", logoutUser)
+
+
