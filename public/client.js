@@ -67,6 +67,16 @@ async function loginUser(event) {
 
 };
 
+async function logoutUser() {
+    try{
+        const response = await axios.delete('http://localhost:4000/api/logout', {
+            withCredentials: true})
+            console.log(response)
+    }catch (error){
+        console.error(error);
+    }
+}
+
 async function fetchHoroscopeData(currentUser) {
     try {
         const userSign = currentUser.sign;
@@ -79,18 +89,18 @@ async function fetchHoroscopeData(currentUser) {
         });
         console.log(response)
         const data = await response.data;
-        const sign = data.prediction.split(',')[0];
-        const horoscope = data.prediction;
-        const number = data.number
-        const color = data.color
-        const mantra = data.mantra
-        const remedy = data.remedy
+        const sign = data.sign
+        const horoscope = data.general;
+        // const number = data.number
+        // const color = data.color
+        // const mantra = data.mantra
+        // const remedy = data.remedy
         document.getElementById('sign').innerText = sign;
         document.getElementById('horoscope').innerText = horoscope;
-        document.getElementById('number').innerText = number;
-        document.getElementById('color').innerText = color;
-        document.getElementById('mantra').innerText = mantra;
-        document.getElementById('remedy').innerText = remedy;
+        // document.getElementById('number').innerText = number;
+        // document.getElementById('color').innerText = color;
+        // document.getElementById('mantra').innerText = mantra;
+        // document.getElementById('remedy').innerText = remedy;
     } catch (error) {
         console.error(error);
     }
@@ -150,3 +160,4 @@ ratingBtn.addEventListener("click", async (event) => {
         }
     }
 );
+logOutBtn.addEventListener("click", logoutUser)

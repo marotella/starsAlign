@@ -7,7 +7,7 @@ const cors = require('cors');
 const {SERVER_PORT} = process.env
 const {CONNECTION_STRING} = process.env
 const {SECRET_KEY} = process.env;
-const {getHoroscope, createUser, loginUser, createRating, getAverageRating} = require("./controller")
+const {getHoroscope, createUser, loginUser, createRating, getAverageRating, logoutUser} = require("./controller")
 const {seed} = require("./seed")
 
 app.use(express.json());
@@ -41,7 +41,7 @@ app.get("/api/horoscope", getHoroscope)
 //USER Routes
 app.post("/api/users", createUser)
 app.post("/api/login", loginUser)
-
+app.delete("/api/logout", logoutUser)
 //RATING
 app.post("/api/rating", createRating)
 app.get("/api/rating", getAverageRating)

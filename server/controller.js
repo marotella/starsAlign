@@ -37,6 +37,15 @@ module.exports = {
             })
             .catch(error => console.log(error));
     },
+    logoutUser: async (req, res) => {
+        try{
+            req.session.currentUser = null;
+            res.status(200).json({message:"User logged out successfully"})
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({error: "Log out unsuccessful"})
+        }
+    },
     getHoroscope: async (req, res, currentUser) => {
         try {
             const currentUser = req.session.currentUser;
@@ -48,13 +57,13 @@ module.exports = {
             console.log(`This is the ${userSign}`);
             const options = {
                 method: 'GET',
-                url: 'https://best-daily-astrology-and-horoscope-api.p.rapidapi.com/api/Detailed-Horoscope/',
-                params: { zodiacSign: `${userSign}` },
+                url: `https://horoscopes-ai.p.rapidapi.com/get_horoscope_en/${userSign}/today/general`,
+                // params: { zodiacSign: `${userSign}` },
                 headers: {
                     'X-RapidAPI-Key': API_KEY,
-                    'X-RapidAPI-Host': 'best-daily-astrology-and-horoscope-api.p.rapidapi.com'
-                }
-            };
+                    'X-RapidAPI-Host': 'horoscopes-ai.p.rapidapi.com'
+                  }
+                };
             const response = await axios.request(options);
             console.log(response.data);
             res.json(response.data);
