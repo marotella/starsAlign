@@ -23,41 +23,48 @@
         </div>
     </div>
     <section id="user-section">
-        <div id="sign-up">
-            <h2>Sign up</h2>
-            <form id="sign-up-form">
-                <label>First Name: </label><input type="text" name="firstName" id="first-name" placeholder="First Name">
-                <label> Last Name: </label><input type="text" name="lastName" id="last-name" placeholder="Last Name">
-                <label>Email: </label><input type="email" name="email" id="email" placeholder="Email">
-                <label>Star sign: </label><select name="sign" id="sign">
-                    <option>--Please choose an option--</option>
-                    <option value="aries">Aries</option>
-                    <option value="taurus">Taurus</option>
-                    <option value="cancer">Cancer</option>
-                    <option value="aquarius">Aquarius</option>
-                    <option value="pisces">Pisces</option>
-                    <option value="gemini">Gemini</option>
-                    <option value="leo">Leo</option>
-                    <option value="virgo">Virgo</option>
-                    <option value="libra">Libra</option>
-                    <option value="scorpio">Scorpio</option>
-                    <option value="sagittrius">Sagittrius</option>
-                    <option value="capricorn">Capricorn</option>
-                </select>
-                <button type="submit">Sign up</button>
-            </form>
-        </div>
-        <div id="login-section">
+        <h4>Welcome to Stars Align! Horosopes have been around for ages. While they can be fun to read, is your
+            horoscope accurate? Use Stars Align to read your horoscope each day, and reflect on it's accuracy!</h4>
+        <div id="form-section">
+            <div id="sign-up">
+                <h4>To get started create an account using the form below!</h4>
+                <h2>Sign up</h2>
+                <form id="sign-up-form">
+                    <label>First Name: </label><input type="text" name="firstName" id="first-name"
+                        placeholder="First Name">
+                    <label> Last Name: </label><input type="text" name="lastName" id="last-name"
+                        placeholder="Last Name">
+                    <label>Email: </label><input type="email" name="email" id="email" placeholder="Email">
+                    <label>Star sign: </label><select name="sign" id="sign">
+                        <option>--Please choose an option--</option>
+                        <option value="aries">Aries</option>
+                        <option value="taurus">Taurus</option>
+                        <option value="cancer">Cancer</option>
+                        <option value="aquarius">Aquarius</option>
+                        <option value="pisces">Pisces</option>
+                        <option value="gemini">Gemini</option>
+                        <option value="leo">Leo</option>
+                        <option value="virgo">Virgo</option>
+                        <option value="libra">Libra</option>
+                        <option value="scorpio">Scorpio</option>
+                        <option value="sagittrius">Sagittrius</option>
+                        <option value="capricorn">Capricorn</option>
+                    </select>
+                    <button type="submit">Sign up</button>
+                </form>
+            </div>
+            <div id="login-section">
 
-            <h2>Log In</h2>
-            <form id="login-form">
+                <h2>Log In</h2>
+                <form id="login-form">
+                    <h4>Log in below using your email to check your horoscope and rate it's accuracy.</h4>
 
+                    <label>Email: </label>
+                    <input type="email" name="email" id="login-email" placeholder="Email">
+                    <button type="login-submit">Log In</button>
 
-                <label>Email: </label>
-                <input type="email" name="email" id="login-email" placeholder="Email">
-                <button type="login-submit">Log In</button>
-
-            </form>
+                </form>
+            </div>
         </div>
     </section>
     <section id="data-section">
@@ -66,23 +73,18 @@
             <h2>Profile</h2>
             <h4 id="currentUserName"></h4>
             <h4 id="currentUserSign"></h4>
-            <!-- <button id="updateDisplay">Update Profile</button> -->
+
             <h3 id="average-rating"></h3>
         </div>
 
         <div id="horoscope-info">
-            <!-- <button id="getHoroscope">Get Horoscope</button> -->
             <h1 id="sign"></h1>
 
             <p id="horoscope"></p>
-            <p id="number"></p>
-            <p id="color"></p>
-            <p id="mantra"></p>
-            <p id="remedy"></p>
 
         </div>
         <div id="rating-info">
-            <h3>Rate the accuracy of your horoscope</h3>
+            <h3>Rate the accuracy of your horoscope, with 1 being completely off and 5 being totatlly aligned!</h3>
             <div class="rating">
                 <input type="radio" id="star5" name="rating" value="5">
                 <label for="star5">5</label>

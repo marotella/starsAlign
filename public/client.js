@@ -21,14 +21,9 @@ const ratingInfoSection = document.getElementById("rating-info");
 const profileSection = document.getElementById("profile-section");
 const averageRating = document.getElementById("average-rating");
 
-function toggleSections(){
-    if (dataSection.style.display === "none") {
-        userSection.style.display = "none";
-        dataSection.style.display = "block";
-    } else {
-        userSection.style.display = "block";
-        dataSection.style.display = "none";
-    }
+function toggleSections() {
+    userSection.style.display = userSection.style.display === "none" ? "flex" : "none";
+    dataSection.style.display = dataSection.style.display === "flex" ? "none" : "flex";
 }
 
 async function createUser(event) {
@@ -46,6 +41,7 @@ async function createUser(event) {
     }
     try {
         const response = await axios.post(`http://localhost:4000/api/users`, userData)
+        alert("Your account was successfully created! Log in to see if your Stars Align!")
     } catch (error) {
         console.error(error);
     }
@@ -105,16 +101,8 @@ async function fetchHoroscopeData(currentUser) {
         const data = await response.data;
         const sign = data.sign
         const horoscope = data.general;
-        // const number = data.number
-        // const color = data.color
-        // const mantra = data.mantra
-        // const remedy = data.remedy
         document.getElementById('sign').innerText = sign;
         document.getElementById('horoscope').innerText = horoscope;
-        // document.getElementById('number').innerText = number;
-        // document.getElementById('color').innerText = color;
-        // document.getElementById('mantra').innerText = mantra;
-        // document.getElementById('remedy').innerText = remedy;
     } catch (error) {
         console.error(error);
     }
@@ -122,7 +110,7 @@ async function fetchHoroscopeData(currentUser) {
 
 async function setProfileData(currentUser) {
     document.getElementById('currentUserName').innerText = `Hi, ${currentUser.first_name}! Let's see what the stars have in store for you!`;
-    document.getElementById('currentUserSign').innerText = `Your astrological sign is, ${currentUser.sign}!`
+    document.getElementById('currentUserSign').innerText = `Your astrological sign is, ${currentUser.sign.toUpperCase()}!`
 };
 
 async function setProfileAndHoroscopeData(currentUser) {
