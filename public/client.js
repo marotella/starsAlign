@@ -20,6 +20,7 @@ const horoscopeInfoSection = document.getElementById("horoscope-info");
 const ratingInfoSection = document.getElementById("rating-info");
 const profileSection = document.getElementById("profile-section");
 const averageRating = document.getElementById("average-rating");
+const sign = document.getElementById("sign");
 
 function toggleSections() {
     userSection.style.display = userSection.style.display === "none" ? "flex" : "none";
@@ -31,7 +32,7 @@ async function createUser(event) {
     const first_name = document.getElementById("first-name").value;
     const last_name = document.getElementById("last-name").value;
     const email = document.getElementById("email").value;
-    const sign = document.getElementById("sign").value;
+    const sign = document.getElementById("user-sign").value;
 
     let userData = {
         first_name: first_name,
@@ -101,7 +102,7 @@ async function fetchHoroscopeData(currentUser) {
         const data = await response.data;
         const sign = data.sign
         const horoscope = data.general;
-        document.getElementById('sign').innerText = sign;
+        document.getElementById('user-sign').innerText = userSign.toUpperCase();
         document.getElementById('horoscope').innerText = horoscope;
     } catch (error) {
         console.error(error);

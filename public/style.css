@@ -19,7 +19,7 @@ form {
 }
 
 section {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 15px;
     border: 1px solid white;
     border-radius: 5px;
@@ -108,3 +108,56 @@ h2 {
     justify-content: center;
 }
 
+#welcome {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#user-sign {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title-image{
+    width: 350px; 
+    height: auto; 
+}
+
+#logo-image {
+    width: 100px;
+    height: auto;
+}
+
+#footer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: black;
+}
+
+#footer a {
+    font-family: "Lato", sans-serif;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
+    margin: 10px;
+}
+
+
+#horoscope-info {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 15px;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

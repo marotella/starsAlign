@@ -14,21 +14,23 @@
 </head>
 
 <body>
-    <h1>Stars Align</h1>
+    <img src="Title.png" id="title-image">
     <div id="header">
         <div id="header">
-            <a href="#" id="signUpDisplay">Sign up</a>
-            <a href="#" id="logInDisplay">Log In</a>
+            <a href="#" id="home-page">Home</a>
             <a href="#" id="logOut">Log Out</a>
         </div>
     </div>
     <section id="user-section">
+        <div id="welcome">
         <h4>Welcome to Stars Align! Horosopes have been around for ages. While they can be fun to read, is your
             horoscope accurate? Use Stars Align to read your horoscope each day, and reflect on it's accuracy!</h4>
+            </div>
         <div id="form-section">
             <div id="sign-up">
-                <h4>To get started create an account using the form below!</h4>
+                
                 <h2>Sign up</h2>
+                <h4>To get started create an account using the form below!</h4>
                 <form id="sign-up-form">
                     <label>First Name: </label><input type="text" name="firstName" id="first-name"
                         placeholder="First Name">
@@ -74,17 +76,17 @@
             <h4 id="currentUserName"></h4>
             <h4 id="currentUserSign"></h4>
 
-            <h3 id="average-rating"></h3>
+            <h4 id="average-rating"></h4>
         </div>
 
         <div id="horoscope-info">
-            <h1 id="sign"></h1>
+            <h1 id="user-sign"></h1>
 
             <p id="horoscope"></p>
 
         </div>
         <div id="rating-info">
-            <h3>Rate the accuracy of your horoscope, with 1 being completely off and 5 being totatlly aligned!</h3>
+            <p>Rate the accuracy of your horoscope, with 1 being completely off and 5 being totatlly aligned!</p>
             <div class="rating">
                 <input type="radio" id="star5" name="rating" value="5">
                 <label for="star5">5</label>
@@ -102,6 +104,9 @@
     </section>
     <script src="client.js"></script>
     <script src="/axios/dist/axios.min.js"></script>
+
+
+   
 </body>
 
 </html>
