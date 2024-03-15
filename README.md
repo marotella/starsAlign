@@ -19,6 +19,11 @@ This application seeks to answer, how accurate are horoscopes. A user can create
 
 ## Screen Shots:
 
+![Screenshot 2024-03-14 at 9 37 31 PM](https://github.com/marotella/starsAlign/assets/111547566/0ad3af08-466b-404c-8e86-8131eb6ddd91)
+
+![Screenshot 2024-03-14 at 9 45 52 PM](https://github.com/marotella/starsAlign/assets/111547566/5cae82ed-6657-426e-be93-9858ea438fcf)
+
+
 
 ## Dependencies:
 - Axios
