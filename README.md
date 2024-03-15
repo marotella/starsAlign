@@ -32,7 +32,7 @@ This application seeks to answer, how accurate are horoscopes. A user can create
 - Express session
 - PostgreSQL
 - Sequelize
-- API Key: 
+- API Key: https://rapidapi.com/ai-box-ai-box-default/api/horoscopes-ai
 
 
 ## Next Steps:
