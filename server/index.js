@@ -33,8 +33,6 @@ app.post('/seed', seed)
 
 // app.options('*', cors(corsOptions));
 
-
-
 //GET 
 app.get("/api/horoscope", getHoroscope)
 

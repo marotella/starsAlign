@@ -1,32 +1,42 @@
 
-
+//FORMS
 let signUpForm = document.getElementById("sign-up");
 let getHoroscopeBtn = document.getElementById("getHoroscope");
 let loginForm = document.getElementById("login-form")
 
-
+// BUTTONS/LINKS
 const signUpDisplayBtn = document.getElementById("signUpDisplay");
 const logInDisplayBtn = document.getElementById("logInDisplay");
 const updateDisplayBtn = document.getElementById("updateDisplay");
 const logOutBtn = document.getElementById("logOut");
 const ratingBtn = document.getElementById("rating-button")
 
+//SECTIONS
 const userSection = document.getElementById("user-section");
 const dataSection = document.getElementById("data-section");
-
 const signUpSection = document.getElementById("sign-up");
 const loginSection = document.getElementById("login-section");
 const horoscopeInfoSection = document.getElementById("horoscope-info");
 const ratingInfoSection = document.getElementById("rating-info");
 const profileSection = document.getElementById("profile-section");
+
+//ELEMENTS 
 const averageRating = document.getElementById("average-rating");
 const sign = document.getElementById("sign");
 
+
+//Toggles Dispaly for User Authentication 
 function toggleSections() {
     userSection.style.display = userSection.style.display === "none" ? "flex" : "none";
     dataSection.style.display = dataSection.style.display === "flex" ? "none" : "flex";
 }
 
+function toggleRating() {
+    ratingInfoSection.style.display = ratingInfoSection.style.display === "flex" ? "none" : "flex"
+
+}
+
+//Creates a user for the platform
 async function createUser(event) {
     event.preventDefault();
     const first_name = document.getElementById("first-name").value;
@@ -48,6 +58,7 @@ async function createUser(event) {
     }
 };
 
+//Logs in a user and navigates to the profile/data section.
 async function loginUser(event) {
     event.preventDefault();
     const email = document.getElementById('login-email').value;
@@ -63,9 +74,9 @@ async function loginUser(event) {
         currentUser = response.data
         console.log(currentUser)
         if (currentUser) {
-            await setProfileAndHoroscopeData(currentUser); // Fetch both profile and horoscope data after login
-            await getHoroscopeRating(currentUser);
-            toggleSections(); // Call toggleSections after login
+            await setProfileAndHoroscopeData(currentUser); 
+            // await getHoroscopeRating(currentUser);
+            toggleSections(); 
 
         } else {
             console.error("Current user is undefined")
@@ -76,18 +87,20 @@ async function loginUser(event) {
 
 };
 
+// Ends the user session 
 async function logoutUser() {
     try{
         const response = await axios.delete('http://localhost:4000/api/logout', {
             withCredentials: true})
             console.log(response)
-            toggleSections(); // Call toggleSections after login
+            toggleSections(); 
 
     }catch (error){
         console.error(error);
     }
 }
 
+//Retrieves horoscope data from the API
 async function fetchHoroscopeData(currentUser) {
     try {
         const userSign = currentUser.sign;
@@ -109,17 +122,20 @@ async function fetchHoroscopeData(currentUser) {
     }
 };
 
+//Organizes dispalying the profile data 
 async function setProfileData(currentUser) {
     document.getElementById('currentUserName').innerText = `Hi, ${currentUser.first_name}! Let's see what the stars have in store for you!`;
     document.getElementById('currentUserSign').innerText = `Your astrological sign is, ${currentUser.sign.toUpperCase()}!`
 };
 
+// Calls the necessary data for the current users profile. 
 async function setProfileAndHoroscopeData(currentUser) {
-    await setProfileData(currentUser); // Populate profile section
-    await fetchHoroscopeData(currentUser); // Populate horoscope info
+    await setProfileData(currentUser); 
+    await fetchHoroscopeData(currentUser); 
 };
 
-async function rateHoroscope(rating) {
+// Rates the horoscope for the day and updates the average rating.
+async function rateHoroscope(rating, currentUser) {
 
     try {
         const response = await axios.post(
@@ -127,12 +143,15 @@ async function rateHoroscope(rating) {
             { rating: rating },
             { withCredentials: true }
         );
+        toggleRating()
         console.log(response.data);
+        
     } catch (error) {
         console.error(error);
     }
 };
 
+//Retrieves average rating for user and displays in the profile
 async function getHoroscopeRating(currentUser) {
     try {
         const response = await axios.get(
@@ -150,16 +169,16 @@ async function getHoroscopeRating(currentUser) {
 };
 
 
-
-// getHoroscopeBtn.addEventListener("click", fetchHoroscopeData);
+// EVENT LISTENERS
 signUpForm.addEventListener("submit", createUser);
 loginForm.addEventListener("submit", loginUser);
 ratingBtn.addEventListener("click", async (event) => {
         const rating = document.querySelector('input[name="rating"]:checked').value;
         console.log(rating);
         if (rating) {
-            console.log(rating); // Check if the value is correctly retrieved
+            console.log(rating); 
             await rateHoroscope(rating);
+            await getHoroscopeRating(currentUser); // Call getHoroscopeRating after rating is submitted
         } else {
             console.error("Rating not captured");
         }
