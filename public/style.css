@@ -23,7 +23,7 @@ section {
     padding: 15px;
     border: 1px solid white;
     border-radius: 5px;
-    margin: 15px;
+    margin: 10px;
 }
 
 
@@ -99,7 +99,7 @@ input::placeholder {
     color: white;
     text-decoration: none;
     padding: 5px;
-    margin: 10px;
+    margin: 5px;
 }
 
 h2 {
@@ -128,26 +128,6 @@ h2 {
 #title-image{
     width: 350px; 
     height: auto; 
-}
-
-#logo-image {
-    width: 100px;
-    height: auto;
-}
-
-#footer {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    background-color: black;
-}
-
-#footer a {
-    font-family: "Lato", sans-serif;
-    color: white;
-    text-decoration: none;
-    padding: 5px;
-    margin: 10px;
 }
 
 

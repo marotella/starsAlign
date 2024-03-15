@@ -75,7 +75,7 @@ async function loginUser(event) {
         console.log(currentUser)
         if (currentUser) {
             await setProfileAndHoroscopeData(currentUser); 
-            // await getHoroscopeRating(currentUser);
+            await getHoroscopeRating(currentUser);
             toggleSections(); 
 
         } else {
@@ -143,7 +143,6 @@ async function rateHoroscope(rating, currentUser) {
             { rating: rating },
             { withCredentials: true }
         );
-        toggleRating()
         console.log(response.data);
         
     } catch (error) {
@@ -179,11 +178,13 @@ ratingBtn.addEventListener("click", async (event) => {
             console.log(rating); 
             await rateHoroscope(rating);
             await getHoroscopeRating(currentUser); // Call getHoroscopeRating after rating is submitted
+            toggleRating()
+
         } else {
             console.error("Rating not captured");
         }
     }
 );
-logOutBtn.addEventListener("click", logoutUser)
+logOutBtn.addEventListener("click", logoutUser, toggleRating)
 
 
