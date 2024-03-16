@@ -4,7 +4,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: "Lato", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-style: normal;
     color: rgb(255, 255, 255);
     background-image: url('nasa-hubble-space-telescope-v8EsOgRXVkQ-unsplash.jpg');
@@ -54,7 +54,7 @@ form {
 
 label {
     padding: 5px;
-    font-size: small;
+    font-size:medium;
     display: inline-block;
 }
 
@@ -126,7 +126,7 @@ h2 {
 }
 
 #title-image{
-    width: 350px; 
+    width: 300px; 
     height: auto; 
 }
 
@@ -158,4 +158,16 @@ h2 {
     font-family: "Lato", sans-serif;
     font-weight: 400;
     font-style: normal;
+}
+h4{
+    font-weight: 300;
+
+}
+
+h2{
+    font-weight: 400;
+}
+
+h1 {
+    font-weight: 400;
 }

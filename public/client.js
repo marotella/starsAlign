@@ -32,9 +32,9 @@ function toggleSections() {
 }
 
 function toggleRating() {
-    ratingInfoSection.style.display = ratingInfoSection.style.display === "flex" ? "none" : "flex"
+    ratingInfoSection.style.display = ratingInfoSection.style.display === "none" ? "block" : "none";
+};
 
-}
 
 //Creates a user for the platform
 async function createUser(event) {
@@ -42,7 +42,7 @@ async function createUser(event) {
     const first_name = document.getElementById("first-name").value;
     const last_name = document.getElementById("last-name").value;
     const email = document.getElementById("email").value;
-    const sign = document.getElementById("user-sign").value;
+    const sign = document.getElementById("sign").value;
 
     let userData = {
         first_name: first_name,
@@ -76,7 +76,8 @@ async function loginUser(event) {
         if (currentUser) {
             await setProfileAndHoroscopeData(currentUser); 
             await getHoroscopeRating(currentUser);
-            toggleSections(); 
+            toggleSections();
+            toggleRating();
 
         } else {
             console.error("Current user is undefined")
@@ -94,6 +95,7 @@ async function logoutUser() {
             withCredentials: true})
             console.log(response)
             toggleSections(); 
+     
 
     }catch (error){
         console.error(error);
@@ -143,12 +145,32 @@ async function rateHoroscope(rating, currentUser) {
             { rating: rating },
             { withCredentials: true }
         );
+        toggleRating()
         console.log(response.data);
-        
+        alert("Thanks for rating today! Come back tomorrow to see if the stars align again!")
     } catch (error) {
         console.error(error);
     }
 };
+
+//Display the rating as stars
+async function ratingStars(rating){
+    const starContainer = document.getElementById("average-rating");
+    starContainer.innerHTML = "Average Rating: "
+    const filledStars = Math.floor(rating); 
+    const remainder = rating - filledStars; 
+    for (let i = 0; i < filledStars; i++) {
+        starContainer.innerHTML += '<span class="stars">&#9733;</span>';
+    }
+    if (remainder >= 0.25 && remainder <= 0.75) {
+        starContainer.innerHTML += '<span class="stars--half">&#9733;</span>';
+    }
+    const emptyStars = 5 - filledStars - (remainder >= 0.75 ? 1 : 0); 
+    for (let i = 0; i < emptyStars; i++) {
+        starContainer.innerHTML += '<span class="stars">&#9734;</span>'; // Empty star
+    }
+};
+
 
 //Retrieves average rating for user and displays in the profile
 async function getHoroscopeRating(currentUser) {
@@ -161,7 +183,10 @@ async function getHoroscopeRating(currentUser) {
             withCredentials: true
         });
         console.log(response);
-        averageRating.innerText = `Your Stars Align horoscope accuracy rating is: ${response.data.roundedAverageRating}`;
+        // averageRating.innerText = `Your Stars Align horoscope accuracy rating is: ${response.data.roundedAverageRating}`;
+        const roundedAverageRating = response.data.roundedAverageRating;
+        ratingStars(roundedAverageRating);
+
     } catch (error){
         console.error(error);
     }
@@ -177,9 +202,7 @@ ratingBtn.addEventListener("click", async (event) => {
         if (rating) {
             console.log(rating); 
             await rateHoroscope(rating);
-            await getHoroscopeRating(currentUser); // Call getHoroscopeRating after rating is submitted
-            toggleRating()
-
+            await getHoroscopeRating(currentUser);
         } else {
             console.error("Rating not captured");
         }
