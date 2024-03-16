@@ -19,7 +19,7 @@ const loginSection = document.getElementById("login-section");
 const horoscopeInfoSection = document.getElementById("horoscope-info");
 const ratingInfoSection = document.getElementById("rating-info");
 const profileSection = document.getElementById("profile-section");
-
+const formSignUp = document.getElementById("sign-up-form")
 //ELEMENTS 
 const averageRating = document.getElementById("average-rating");
 const sign = document.getElementById("sign");
@@ -52,6 +52,7 @@ async function createUser(event) {
     }
     try {
         const response = await axios.post(`http://localhost:4000/api/users`, userData)
+        formSignUp.reset();
         alert("Your account was successfully created! Log in to see if your Stars Align!")
     } catch (error) {
         console.error(error);
@@ -76,8 +77,9 @@ async function loginUser(event) {
         if (currentUser) {
             await setProfileAndHoroscopeData(currentUser); 
             await getHoroscopeRating(currentUser);
+            loginForm.reset();
             toggleSections();
-            toggleRating();
+            // toggleRating();
 
         } else {
             console.error("Current user is undefined")
